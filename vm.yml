@@ -1,4 +1,3 @@
-ible-azure-2 ansible-azure]$ cat vm.yml 
 ---
 - name: Create Azure VM
   hosts: localhost
@@ -8,13 +7,14 @@ ible-azure-2 ansible-azure]$ cat vm.yml
     - azure.azcollection
 
   vars:
-    resource_group_name: 1-ab740bbc-playground-sandbox
+    resource_group_name: 1-d5767476-playground-sandbox
     vm_name: awesomevm1
     vnet_name: awesomevnet
     subnet_name: awesomesubnet1
     public_ip_name: awesomepublicip1
     security_group_name: awesomesecgroup1
     network_interface_name: awesomenic1
+    location: southcentralus
   
   tasks:
     - name: Create virtual network
@@ -22,6 +22,7 @@ ible-azure-2 ansible-azure]$ cat vm.yml
         resource_group: "{{ resource_group_name }}"
         name: "{{ vnet_name }}"
         address_prefixes: "10.10.0.0/16"
+        location: "{{ location }}"
     
     - name: Add subnet
       azure_rm_subnet:
@@ -40,6 +41,7 @@ ible-azure-2 ansible-azure]$ cat vm.yml
       azure_rm_securitygroup:
         resource_group: "{{ resource_group_name }}"
         name: "{{ security_group_name }}"
+        location: "{{ location }}"
         rules:
           - name: SSH
             protocol: Tcp
@@ -56,11 +58,13 @@ ible-azure-2 ansible-azure]$ cat vm.yml
         subnet: "{{ subnet_name }}"
         public_ip_name: "{{ public_ip_name }}"
         security_group: "{{ security_group_name }}"
+        location: "{{ location }}"
     
     - name: Create Azure VM
       azure_rm_virtualmachine:
         resource_group: "{{ resource_group_name }}"
         name: "{{ vm_name }}"
+        location: "{{ location }}"
         vm_size: Standard_D2s_v3
         image:
           offer: CentOS
@@ -68,6 +72,7 @@ ible-azure-2 ansible-azure]$ cat vm.yml
           sku: '7.5'
           version: latest
         admin_username: harman
+        network_interfaces: "{{ network_interface_name }}"
         ssh_password_enabled: false
         ssh_public_keys:
           - path: /home/harman/.ssh/authorized_keys
