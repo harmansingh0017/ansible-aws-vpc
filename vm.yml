@@ -1,5 +1,5 @@
 ---
-- name: Crreate Azure VM
+- name: Crrerate Azure VM
   hosts: localhost
   connection: local
   
@@ -7,14 +7,14 @@
     - azure.azcollection
 
   vars:
-    resource_group_name: 1-d5767476-playground-sandbox
+    resource_group_name: 1-0a75e67c-playground-sandbox
     vm_name: awesomevm1
     vnet_name: awesomevnet
     subnet_name: awesomesubnet1
     public_ip_name: awesomepublicip1
     security_group_name: awesomesecgroup1
     network_interface_name: awesomenic1
-    location: southcentralus
+    location: eastus
   
   tasks:
     - name: Create virtual network
@@ -78,4 +78,4 @@
           - path: /home/harman/.ssh/authorized_keys
             key_data: "{{ lookup('file', '/home/harman/.ssh/authorized_keys.pub') }}"
 
- /home/harman/.ssh/authorized_keys
+ 
