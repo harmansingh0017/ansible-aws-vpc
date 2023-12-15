@@ -16,23 +16,22 @@ Before configuring the Azure DevOps release pipeline, ensure you have the follow
 
 ## Monitoring and Alerts
 
-This project integrates Azure Monitor for monitoring CPU metrics on the deployed VM. Follow these steps to set up monitoring and alerts:
+This project utilizes Azure Monitor for real-time CPU metric monitoring on the deployed VM. Follow these steps to set up monitoring and create alert:
 
-1. Configure Azure Monitor alerts based on the collected metrics:
+1. View CPU metrics in Azure Monitor:
+   - In the Azure Portal, navigate to "Monitor" and then "Metrics."
+   - Select the resource type (e.g., "Virtual Machines") and metric (e.g., "Processor Time").
+   - Adjust time ranges and filters as needed.
+   - Review the metrics graph for CPU usage over time.
+
+2. Configure Azure Monitor alerts based on the collected metrics:
    - Navigate to the Azure Portal and access Azure Monitor.
    - In the left-hand menu, select "Monitor" and then "Alerts."
    - Click on "+ New alert rule" to define the alert conditions.
    - Set up actions to be taken when the alert is triggered.
    - Save the alert rule.
 
-2. View CPU metrics in Azure Monitor:
-   - In the Azure Portal, navigate to "Monitor" and then "Metrics."
-   - Select the resource type (e.g., "Virtual Machines") and metric (e.g., "Processor Time").
-   - Adjust time ranges and filters as needed.
-   - Review the metrics graph for CPU usage over time.
-
 3. Regularly review and update alert rules based on changing infrastructure needs.
-
 
 ## Notes
 
